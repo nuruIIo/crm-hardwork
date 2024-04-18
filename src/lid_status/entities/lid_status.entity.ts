@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Lid } from '../../lid/entities/lid.entity';
 
 @Entity()
 export class LidStatus {
@@ -7,4 +8,7 @@ export class LidStatus {
 
   @Column()
   status: string;
+
+  @OneToMany((type) => Lid, (lid) => lid.status_id)
+  lids: Lid[];
 }

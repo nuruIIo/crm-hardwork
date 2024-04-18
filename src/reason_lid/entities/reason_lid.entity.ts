@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Lid } from '../../lid/entities/lid.entity';
 
 @Entity()
 export class ReasonLid {
@@ -7,4 +8,7 @@ export class ReasonLid {
 
   @Column()
   reason: string;
+
+  @OneToMany((type) => Lid, (lid) => lid.reason_id)
+  lids: Lid[];
 }
